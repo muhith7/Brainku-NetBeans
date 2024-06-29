@@ -26,7 +26,9 @@ public class LoginPage extends javax.swing.JFrame {
      */
     public LoginPage() {
         setUndecorated(true);
+        setLocationRelativeTo(null);
         initComponents();
+        
     }
 
     /**
@@ -108,11 +110,6 @@ public class LoginPage extends javax.swing.JFrame {
 
         rSMaterialButtonRectangle1.setBackground(new java.awt.Color(204, 204, 0));
         rSMaterialButtonRectangle1.setText("LOGIN");
-        rSMaterialButtonRectangle1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rSMaterialButtonRectangle1MouseClicked(evt);
-            }
-        });
         rSMaterialButtonRectangle1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rSMaterialButtonRectangle1ActionPerformed(evt);
@@ -140,7 +137,7 @@ public class LoginPage extends javax.swing.JFrame {
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/pass.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/password.png"))); // NOI18N
         jLabel5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 1, new java.awt.Color(0, 0, 0)));
         jLabel5.setOpaque(true);
 
@@ -252,53 +249,47 @@ public class LoginPage extends javax.swing.JFrame {
         setLocation(evt.getXOnScreen()-positionX,evt.getYOnScreen()-positionY);
     }//GEN-LAST:event_formMouseDragged
 
-    private void rSMaterialButtonRectangle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonRectangle1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rSMaterialButtonRectangle1ActionPerformed
-
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void passwordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFocusGained
-        if (password.getText().equals("Password")){
-            password.setText("");
-            password.setEchoChar('•');
-        }   // TODO add your handling code here:
+        if (password.getText().equals("Password")) {
+        password.setText("");
+        password.setEchoChar('•'); // Gunakan '•' untuk menyembunyikan karakter password
+        password.setForeground(new java.awt.Color(0, 0, 0)); // Ubah warna teks menjadi hitam saat pengguna mulai mengetik
+    }  // TODO add your handling code here:
     }//GEN-LAST:event_passwordFocusGained
 
     private void passwordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFocusLost
-        if (password.getText().equals("") ){
-            password.setText("Password");
-            password.setEchoChar('•');
-        }
+        if (password.getText().equals("")) {
+        password.setText("Password");
+        password.setEchoChar((char) 0); // Ubah kembali EchoChar untuk menampilkan teks biasa
+        password.setForeground(new java.awt.Color(169, 169, 169)); // Ubah warna teks menjadi abu-abu saat kembali ke teks default
+    }
     }//GEN-LAST:event_passwordFocusLost
 
     private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
         // TODO add your handling code here:
+        rSMaterialButtonRectangle1ActionPerformed(evt);
+        
     }//GEN-LAST:event_passwordActionPerformed
 
     private void usernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFocusGained
         // TODO add your handling code here:
-        if(username.getText().equals("Username")) {
-            username.setText("");
-        }
-
-        if (password.getText().equals("Password")) {
-            password.setEchoChar((char) 0);
-        }
+        if (username.getText().equals("Username")) {
+        username.setText("");
+        username.setForeground(new java.awt.Color(0, 0, 0)); // Ubah warna teks menjadi hitam saat pengguna mulai mengetik
+    }
     }//GEN-LAST:event_usernameFocusGained
 
     private void usernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFocusLost
         // TODO add your handling code here:
-        if(username.getText().equals("")) {
-            username.setText("Username");
-        }
-
-        if (password.getText().equals("Password")) {
-            password.setEchoChar((char) 0);
-        }
+        if (username.getText().equals("")) {
+        username.setText("Username");
+        username.setForeground(new java.awt.Color(169, 169, 169)); // Ubah warna teks menjadi abu-abu saat kembali ke teks default
+    }
     }//GEN-LAST:event_usernameFocusLost
 
     private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
@@ -310,7 +301,7 @@ public class LoginPage extends javax.swing.JFrame {
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void rSMaterialButtonRectangle1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rSMaterialButtonRectangle1MouseClicked
+    private void rSMaterialButtonRectangle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonRectangle1ActionPerformed
         // TODO add your handling code here:
         try{
             ResultSet res = (ResultSet) conn.getData("SELECT * FROM user WHERE " +
@@ -326,8 +317,7 @@ public class LoginPage extends javax.swing.JFrame {
         }catch (SQLException ex){
             Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-    }//GEN-LAST:event_rSMaterialButtonRectangle1MouseClicked
+    }//GEN-LAST:event_rSMaterialButtonRectangle1ActionPerformed
 
     /**
      * @param args the command line arguments

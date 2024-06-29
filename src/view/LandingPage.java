@@ -21,6 +21,7 @@ public class LandingPage extends javax.swing.JFrame {
     public LandingPage() {
         setUndecorated(true);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
